@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#00F5FF"
+    android:layout_height="match_parent">
+
+    <com.che.slidingcard.slidingcard.SlidingCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:card_color="#cc3399"
+        app:card_text="卡片1"/>
+
+    <com.che.slidingcard.slidingcard.SlidingCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:card_color="#99ffcc"
+        app:card_text="卡片2"/>
+
+    <com.che.slidingcard.slidingcard.SlidingCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:card_color="#33ccff"
+        app:card_text="卡片3"/>
+
+    <com.che.slidingcard.slidingcard.SlidingCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:card_color="#F4A460"
+        app:card_text="卡片4"/>
+
+</android.support.design.widget.CoordinatorLayout>
