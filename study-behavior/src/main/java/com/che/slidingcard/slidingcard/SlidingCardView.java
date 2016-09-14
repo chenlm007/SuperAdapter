@@ -42,14 +42,14 @@ public class SlidingCardView extends FrameLayout {
     }
 
     private void init(final Context context, AttributeSet attrs, int defStyleAttr) {
+        LayoutInflater.from(context).inflate(R.layout.view_slidingcard, this);
+        TextView textView = (TextView) findViewById(R.id.tv);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
+
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlidingCardView, defStyleAttr, 0);
         int color = array.getColor(R.styleable.SlidingCardView_card_color, Color.GREEN);
         String text = array.getString(R.styleable.SlidingCardView_card_text);
         array.recycle();
-
-        LayoutInflater.from(context).inflate(R.layout.view_slidingcard, this);
-        TextView textView = (TextView) findViewById(R.id.tv);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
 
         textView.setText(text);
         textView.setBackgroundColor(color);

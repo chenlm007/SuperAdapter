@@ -32,6 +32,16 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardV
         return true;
     }
 
+    /**
+     * 有嵌套滑动到来了，问下父View是否接受嵌套滑动
+     *
+     * @param coordinatorLayout
+     * @param child             嵌套滑动对应的父类的子类(因为嵌套滑动对于的父View不一定是一级就能找到的，可能挑了两级父View的父View，child的辈分>=target)
+     * @param directTargetChild
+     * @param target            具体嵌套滑动的那个子类
+     * @param nestedScrollAxes  支持嵌套滚动轴。水平方向，垂直方向，或者不指定
+     * @return 是否接受该嵌套滑动
+     */
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, SlidingCardView child, View directTargetChild, View target, int nestedScrollAxes) {
         //判断监听的方向
@@ -39,6 +49,17 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardV
         return isVertical && child == directTargetChild;
     }
 
+    /**
+     * 在嵌套滑动的子View未滑动之前告诉过来的准备滑动的情况
+     *
+     * @param parent
+     * @param child
+     * @param target   具体嵌套滑动的那个子类
+     * @param dx       水平方向嵌套滑动的子View想要变化的距离
+     * @param dy       垂直方向嵌套滑动的子View想要变化的距离
+     * @param consumed 这个参数要我们在实现这个函数的时候指定，回头告诉子View当前父View消耗的距离
+     *                 consumed[0] 水平消耗的距离，consumed[1] 垂直消耗的距离 好让子view做出相应的调整
+     */
     @Override
     public void onNestedPreScroll(CoordinatorLayout parent, SlidingCardView child, View target, int dx, int dy, int[] consumed) {
         if (child.getTop() > defaultOffset) {
@@ -51,6 +72,17 @@ public class SlidingCardBehavior extends CoordinatorLayout.Behavior<SlidingCardV
         }
     }
 
+    /**
+     * 嵌套滑动的子View在滑动之后报告过来的滑动情况
+     *
+     * @param parent
+     * @param child
+     * @param target       具体嵌套滑动的那个子类
+     * @param dxConsumed   水平方向嵌套滑动的子View滑动的距离(消耗的距离)
+     * @param dyConsumed   垂直方向嵌套滑动的子View滑动的距离(消耗的距离)
+     * @param dxUnconsumed 水平方向嵌套滑动的子View未滑动的距离(未消耗的距离)
+     * @param dyUnconsumed 垂直方向嵌套滑动的子View未滑动的距离(未消耗的距离)
+     */
     @Override
     public void onNestedScroll(CoordinatorLayout parent, SlidingCardView child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         //1、控制自己的滑动
